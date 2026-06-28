@@ -6,7 +6,7 @@
   <title>Marilia Yoga</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -25,7 +25,7 @@
     html, body {
       min-height: 100%;
       background-color: var(--cream);
-      font-family: 'Jost', sans-serif;
+      font-family: 'Outfit', sans-serif;
       color: var(--text);
     }
 
@@ -85,48 +85,97 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: 36px;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--cream);
       letter-spacing: 2px;
     }
 
     /* ── HEADER TEXT ── */
     .name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 32px;
-      font-weight: 300;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+      font-family: 'DM Serif Display', serif;
+      font-size: 34px;
+      font-weight: 400;
+      letter-spacing: 1px;
       color: var(--moss);
       text-align: center;
-      line-height: 1.1;
+      line-height: 1.15;
     }
     .name em {
       font-style: italic;
-      font-weight: 400;
       color: var(--gold);
     }
 
     .tagline {
       margin-top: 10px;
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--muted);
       text-align: center;
     }
 
-    .bio {
-      margin-top: 16px;
-      font-size: 14.5px;
-      font-weight: 300;
-      line-height: 1.75;
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      width: calc(100% + 48px);
+      margin-top: 20px;
+      overflow: hidden;
+      position: relative;
+      padding: 10px 0;
+    }
+    .marquee-wrap::before,
+    .marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 48px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--cream), transparent);
+    }
+    .marquee-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--cream), transparent);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 18s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      white-space: nowrap;
+      padding-right: 0;
+    }
+    .marquee-item {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      font-weight: 400;
+      font-style: italic;
       color: var(--bark);
-      text-align: center;
-      max-width: 340px;
+      letter-spacing: 0.3px;
+      padding: 0 6px;
+    }
+    .marquee-sep {
+      color: var(--gold);
+      font-size: 13px;
+      padding: 0 4px;
+      opacity: 0.8;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
     }
 
     /* ── DIVIDER ── */
@@ -195,6 +244,7 @@
 
     .btn-text {
       flex: 1;
+      text-align: center;
     }
     .btn-label {
       font-size: 11px;
@@ -205,8 +255,8 @@
       margin-bottom: 2px;
     }
     .btn-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 19px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
       font-weight: 400;
       display: block;
       line-height: 1.1;
@@ -253,10 +303,206 @@
     .btn-produto .btn-title  { color: var(--moss); }
     .btn-produto .btn-arrow  { color: var(--sage); }
 
+    /* Espaço — fundo musgo claro */
+    .btn-espaco {
+      background: var(--cream);
+      border-color: var(--gold);
+    }
+    .btn-espaco .btn-icon { background: var(--gold); }
+    .btn-espaco .btn-label { color: var(--muted); }
+    .btn-espaco .btn-title { color: var(--bark); }
+    .btn-espaco .btn-arrow { color: var(--gold); }
+
+    /* ── POPUP SLIDER ── */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 20, 10, 0.85);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .popup-overlay.active { display: flex; }
+
+    .popup-box {
+      background: var(--cream);
+      border-radius: 16px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+    }
+    .popup-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(28,20,10,0.45);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .slider-viewport {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+      background: var(--moss);
+    }
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+    .slider-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--sand);
+    }
+    .slider-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .slider-slide .slide-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+    }
+    .slider-slide .slide-placeholder svg { opacity: 0.4; }
+    .slider-slide .slide-placeholder span {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(245,239,224,0.85);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--moss);
+      transition: background 0.18s;
+      z-index: 5;
+    }
+    .slider-nav:hover { background: var(--cream); }
+    .slider-prev { left: 10px; }
+    .slider-next { right: 10px; }
+    .slider-footer {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .slider-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: var(--moss);
+    }
+    .slider-counter {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+    .slider-dots {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      padding-bottom: 16px;
+    }
+    .slider-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sand);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .slider-dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    /* Maps — fundo areia escura */
+    .btn-maps {
+      background: var(--sand);
+      border-color: var(--gold-lt);
+    }
+    .btn-maps .btn-icon {
+      background: var(--gold);
+    }
+    .btn-maps .btn-label  { color: var(--muted); }
+    .btn-maps .btn-title  { color: var(--bark); }
+    .btn-maps .btn-arrow  { color: var(--gold); }
+
+    /* ── MINIMAPA ── */
+    .map-wrap {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid var(--gold-lt);
+      margin-top: -6px;
+      position: relative;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 200px;
+      display: block;
+      border: none;
+      filter: saturate(0.7) sepia(0.18);
+    }
+    .map-address {
+      background: var(--moss);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .map-address svg {
+      flex-shrink: 0;
+      opacity: 0.75;
+    }
+    .map-address span {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: var(--cream);
+      opacity: 0.9;
+    }
+
     /* ── FOOTER ── */
     .footer {
       margin-top: 48px;
       text-align: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .footer-lotus {
       font-size: 22px;
@@ -271,6 +517,41 @@
       color: var(--muted);
       font-weight: 300;
     }
+    .footer-copy {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 300;
+      opacity: 0.7;
+    }
+    .social-icons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--moss);
+      text-decoration: none;
+      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+    .social-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+    .social-btn:hover {
+      background: var(--moss);
+      color: var(--cream);
+      border-color: var(--moss);
+      transform: translateY(-2px);
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .btn { transition: none; }
@@ -280,18 +561,6 @@
 <body>
 <main class="page">
 
-  <!-- Ornamento Lotus SVG -->
-  <svg class="ornament" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M32 52 C32 52 12 38 12 24 C12 16 20 10 28 14 C28 10 30 8 32 8 C34 8 36 10 36 14 C44 10 52 16 52 24 C52 38 32 52 32 52Z" fill="#6B8C6E" opacity="0.25"/>
-    <path d="M32 50 C32 50 16 37 16 25 C16 19 22 14 28 17 C28 13 30 11 32 11 C34 11 36 13 36 17 C42 14 48 19 48 25 C48 37 32 50 32 50Z" fill="#6B8C6E" opacity="0.4"/>
-    <path d="M32 48 C32 48 20 37 20 27 C20 21 25 17 30 19 C29 15 31 13 32 13 C33 13 35 15 34 19 C39 17 44 21 44 27 C44 37 32 48 32 48Z" fill="#3B5143" opacity="0.6"/>
-    <path d="M32 46 C32 46 24 37 24 29 C24 24 28 21 32 22 C36 21 40 24 40 29 C40 37 32 46 32 46Z" fill="#3B5143"/>
-    <circle cx="32" cy="29" r="4" fill="#B8964A" opacity="0.8"/>
-    <!-- Folhas laterais -->
-    <path d="M12 36 C8 30 8 22 14 18 C14 28 18 34 24 38" fill="#6B8C6E" opacity="0.3"/>
-    <path d="M52 36 C56 30 56 22 50 18 C50 28 46 34 40 38" fill="#6B8C6E" opacity="0.3"/>
-  </svg>
-
   <!-- Avatar -->
   <div class="avatar-wrap">
     <div class="avatar-ring">
@@ -300,9 +569,44 @@
   </div>
 
   <!-- Nome -->
-  <h1 class="name">Marilia<br><em>Prof. Yoga</em></h1>
+  <h1 class="name">Marilia <em>Prof. Yoga</em></h1>
   <p class="tagline">Hatha Yoga · Meditação · Filosofia</p>
-  <p class="bio">Mova o corpo · Acalme a mente · Eleve a consciência.<br>Autoconhecimento através da respiração, filosofia e prática.</p>
+  <div class="marquee-wrap" aria-label="Mova o corpo · Acalme a mente · Eleve a consciência · Autoconhecimento · Respiração · Filosofia · Prática">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span class="marquee-item">Mova o corpo</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Acalme a mente</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Eleve a consciência</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Autoconhecimento</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Respiração</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Filosofia</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Prática</span>
+        <span class="marquee-sep">🪷</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span class="marquee-item">Mova o corpo</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Acalme a mente</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Eleve a consciência</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Autoconhecimento</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Respiração</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Filosofia</span>
+        <span class="marquee-sep">🪷</span>
+        <span class="marquee-item">Prática</span>
+        <span class="marquee-sep">🪷</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Divisor -->
   <div class="divider" aria-hidden="true">
@@ -315,7 +619,7 @@
   <nav class="links" aria-label="Links da Marilia">
 
     <!-- WhatsApp -->
-    <a href="#" class="btn btn-whatsapp" aria-label="Agendar aula pelo WhatsApp">
+    <a href="https://wa.me/5548998273643?text=Gostaria%20de%20agendar%20minhas%20aulas!" target="_blank" class="btn btn-whatsapp" aria-label="Agendar aula pelo WhatsApp">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
@@ -329,7 +633,7 @@
     </a>
 
     <!-- YouTube -->
-    <a href="#" class="btn btn-youtube" aria-label="Canal no YouTube">
+    <a href="https://www.youtube.com/@mariliayoga" target="_blank" class="btn btn-youtube" aria-label="Canal no YouTube">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -343,7 +647,7 @@
     </a>
 
     <!-- Infoproduto -->
-    <a href="#" class="btn btn-produto" aria-label="Conhecer o infoproduto">
+    <a href="https://www.amplifying.com.br" target="_blank" class="btn btn-produto" aria-label="Conhecer o infoproduto">
       <span class="btn-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
@@ -356,14 +660,216 @@
       <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
 
+    <!-- Conheça o Espaço -->
+    <button onclick="document.getElementById('popupEspaco').classList.add('active')" class="btn btn-espaco" aria-label="Conheça nosso espaço">
+      <span class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-label">Galeria de fotos</span>
+        <span class="btn-title">Conheça nosso espaço</span>
+      </span>
+      <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+
+    <!-- Maps -->
+    <a href="https://maps.app.goo.gl/W5n3DUqSPaJmibjk6" target="_blank" class="btn btn-maps" aria-label="Ver estúdio no Google Maps">
+      <span class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-label">Onde estamos</span>
+        <span class="btn-title">Conheça nosso estúdio no Maps</span>
+      </span>
+      <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
   </nav>
+
+  <!-- Minimapa -->
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3515.5197055771687!2d-48.66904062465702!3d-28.22190147589137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9526ca71d342456b%3A0x27a2ecf5ed10985d!2sPrashanti%20Espa%C3%A7o%20de%20Yoga!5e0!3m2!1spt-BR!2sbr!4v1782678191017!5m2!1spt-BR!2sbr"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      title="Prashanti Espaço de Yoga"
+    ></iframe>
+    <div class="map-address">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
+      </svg>
+      <span>Prashanti Espaço de Yoga</span>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
-    <span class="footer-lotus" aria-hidden="true">🪷</span>
-    <p class="footer-text">@mariliaprofyoga</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/mariliaprofyoga/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram da Marilia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a href="https://www.youtube.com/@mariliayoga" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube da Marilia">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      </a>
+      <a href="#" class="social-btn" aria-label="Facebook da Marilia">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+    </div>
+    <p class="footer-copy">© 2026 Marilia Prof. Yoga · Todos os direitos reservados</p>
   </footer>
 
 </main>
+  <!-- Popup Slider -->
+  <div id="popupEspaco" class="popup-overlay" onclick="if(event.target===this)this.classList.remove('active')">
+    <div class="popup-box">
+      <button class="popup-close" onclick="document.getElementById('popupEspaco').classList.remove('active')" aria-label="Fechar galeria">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="slider-viewport">
+        <div class="slider-track" id="sliderTrack">
+          <!-- Foto 1 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 1</span>
+            </div>
+          </div>
+          <!-- Foto 2 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 2</span>
+            </div>
+          </div>
+          <!-- Foto 3 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 3</span>
+            </div>
+          </div>
+          <!-- Foto 4 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 4</span>
+            </div>
+          </div>
+          <!-- Foto 5 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 5</span>
+            </div>
+          </div>
+          <!-- Foto 6 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 6</span>
+            </div>
+          </div>
+          <!-- Foto 7 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 7</span>
+            </div>
+          </div>
+          <!-- Foto 8 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 8</span>
+            </div>
+          </div>
+          <!-- Foto 9 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 9</span>
+            </div>
+          </div>
+          <!-- Foto 10 -->
+          <div class="slider-slide">
+            <div class="slide-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+              <span>Foto 10</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="slider-nav slider-prev" onclick="sliderMove(-1)" aria-label="Foto anterior">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="slider-nav slider-next" onclick="sliderMove(1)" aria-label="Próxima foto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <div class="slider-footer">
+        <span class="slider-title">Prashanti Espaço de Yoga</span>
+        <span class="slider-counter" id="sliderCounter">1 / 10</span>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+  </div>
+
+  <script>
+    var current = 0;
+    var total = 10;
+    var track = document.getElementById('sliderTrack');
+    var counter = document.getElementById('sliderCounter');
+    var dotsWrap = document.getElementById('sliderDots');
+
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('button');
+      d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Foto ' + (i + 1));
+      d.setAttribute('data-i', i);
+      d.onclick = function() { sliderGoTo(parseInt(this.getAttribute('data-i'))); };
+      dotsWrap.appendChild(d);
+    }
+
+    function sliderGoTo(n) {
+      current = (n + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      counter.textContent = (current + 1) + ' / ' + total;
+      dotsWrap.querySelectorAll('.slider-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    function sliderMove(dir) { sliderGoTo(current + dir); }
+
+    document.getElementById('popupEspaco').addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') sliderMove(-1);
+      if (e.key === 'ArrowRight') sliderMove(1);
+      if (e.key === 'Escape') this.classList.remove('active');
+    });
+
+    var touchStartX = 0;
+    track.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+    track.addEventListener('touchend', function(e) {
+      var diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) sliderMove(diff > 0 ? 1 : -1);
+    });
+  </script>
 </body>
 </html>
