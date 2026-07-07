@@ -21,7 +21,6 @@
     :root {
       --cream:   #FFFFFF;
       --moss:    #7A3D1D;
-      --sage:    #C97A45;
       --gold:    #B8712F;
       --gold-lt: #E3A876;
       --bark:    #5C3317;
@@ -72,7 +71,6 @@
     }
     .fi { opacity: 0; animation: fadeDown 0.6s ease forwards; }
     .fi-1  { animation-delay: 0.05s; }
-    .fi-2  { animation-delay: 0.15s; }
     .fi-3  { animation-delay: 0.25s; }
     .fi-4  { animation-delay: 0.35s; }
     .fi-5  { animation-delay: 0.45s; }
@@ -350,17 +348,13 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .btn-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 20px; display: block; line-height: 1.1;
-    }
     .btn-arrow { opacity: 0.65; flex-shrink: 0; }
 
     .btn-whatsapp,
     .btn-espaco,
     .btn-maps {
       background: linear-gradient(150deg, var(--copper-hi) 0%, var(--copper-mid) 38%, var(--copper-low) 72%, var(--copper-deep) 100%);
-      border-color: var(--copper-deep);
+      border-color: var(--copper-mid);
     }
 
     .btn-whatsapp .btn-icon,
@@ -373,11 +367,6 @@
     .btn-maps .btn-label {
       color: rgba(255,255,255,0.8);
     }
-    .btn-whatsapp .btn-title,
-    .btn-espaco .btn-title,
-    .btn-maps .btn-title {
-      color: #FFFFFF;
-    }
     .btn-whatsapp .btn-arrow,
     .btn-espaco .btn-arrow,
     .btn-maps .btn-arrow {
@@ -389,7 +378,7 @@
       width: 100%;
       border-radius: 14px;
       overflow: hidden;
-      border: 1.5px solid var(--gold-lt);
+      border: 1.5px solid var(--copper-mid);
       margin-top: 14px;
     }
     .map-wrap iframe {
@@ -614,9 +603,6 @@
       background: #F2DCC7;
     }
     .slider-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .slide-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--muted); }
-    .slide-placeholder svg { opacity: 0.4; }
-    .slide-placeholder span { font-size: 12px; font-weight: 300; letter-spacing: 1px; }
 
     .slider-nav {
       position: absolute;
@@ -785,6 +771,7 @@
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3661.9977130559855!2d-49.5064!3d-23.3883!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c1a51547e45393%3A0x9d1db8362db2d580!2sR.%20Mario%20Stela%2C%20341%20-%20Centro%2C%20Fartura%20-%20SP%2C%2018870-000!5e0!3m2!1spt-BR!2sbr!4v1783459208744!5m2!1spt-BR!2sbr"
       allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+      sandbox="allow-scripts allow-same-origin allow-popups"
       title="Movimento Yoga"
     ></iframe>
     <div class="map-address">
@@ -796,7 +783,7 @@
     </div>
   </div>
 
-  <div id="popupEspaco" class="popup-overlay">
+  <div id="popupEspaco" class="popup-overlay" role="dialog" aria-modal="true" tabindex="-1">
     <div class="popup-box">
       <button class="popup-close" id="popupClose" aria-label="Fechar galeria">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -817,7 +804,7 @@
 
       <div class="slider-footer">
         <span class="slider-title">Estúdio Movimento Yoga</span>
-        <span class="slider-counter" id="sliderCounter">1 / 10</span>
+        <span class="slider-counter" id="sliderCounter">1 / 2</span>
       </div>
       <div class="slider-dots" id="sliderDots"></div>
     </div>
