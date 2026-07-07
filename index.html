@@ -207,7 +207,7 @@
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: marquee 18s linear infinite;
+      animation: marquee 38s linear infinite;
     }
     .marquee-track:hover { animation-play-state: paused; }
     .marquee-content { display: flex; align-items: center; white-space: nowrap; }
@@ -340,11 +340,15 @@
       filter: brightness(0) invert(1);
     }
 
-    .btn-text { flex: 1; text-align: center; }
+    .btn-text { flex: 1; text-align: center; min-width: 0; }
     .btn-label {
-      font-size: 11px; font-weight: 400;
-      letter-spacing: 2px; text-transform: uppercase;
+      font-size: clamp(7px, calc((100vw - 180px) / 20), 11px);
+      font-weight: 400;
+      letter-spacing: 0.18em; text-transform: uppercase;
       display: block; margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .btn-title {
       font-family: 'DM Serif Display', serif;
@@ -486,7 +490,7 @@
     }
     .slider-viewport {
       width: 100%;
-      aspect-ratio: 4/3;
+      aspect-ratio: 1/1;
       overflow: hidden;
       position: relative;
       background: var(--moss);
@@ -581,25 +585,27 @@
     <span class="divider-line"></span>
   </div>
 
-  <div class="marquee-wrap fi fi-4" aria-label="Mova o corpo · Acalme a mente · Eleve a consciência · Autoconhecimento · Respiração · Filosofia · Prática">
+  <div class="marquee-wrap fi fi-4" aria-label="Mindfulness · Saúde mental · Breath Work · Regulação de Emoções · Saúde intestinal · Detox do corpo · Eliminação de vícios · Meditação">
     <div class="marquee-track">
       <div class="marquee-content">
-        <span class="marquee-item">Mova o corpo</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Acalme a mente</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Eleve a consciência</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Autoconhecimento</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Respiração</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Filosofia</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Prática</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Mindfulness</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Saúde mental</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Breath Work</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Regulação de Emoções</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Saúde intestinal</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Detox do corpo</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Eliminação de vícios</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Meditação</span><span class="marquee-sep"></span>
       </div>
       <div class="marquee-content" aria-hidden="true">
-        <span class="marquee-item">Mova o corpo</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Acalme a mente</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Eleve a consciência</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Autoconhecimento</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Respiração</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Filosofia</span><span class="marquee-sep"></span>
-        <span class="marquee-item">Prática</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Mindfulness</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Saúde mental</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Breath Work</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Regulação de Emoções</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Saúde intestinal</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Detox do corpo</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Eliminação de vícios</span><span class="marquee-sep"></span>
+        <span class="marquee-item">Meditação</span><span class="marquee-sep"></span>
       </div>
     </div>
   </div>
