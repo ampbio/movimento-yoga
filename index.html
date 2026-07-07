@@ -348,7 +348,16 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .btn-arrow { opacity: 0.65; flex-shrink: 0; }
+    .btn-arrow {
+      opacity: 0.65;
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-arrow svg { width: 16px; height: 16px; }
 
     .btn-whatsapp,
     .btn-espaco,
@@ -565,6 +574,7 @@
       align-items: center;
       justify-content: center;
     }
+    .agenda-btn-arrow svg { width: 14px; height: 14px; }
 
     .popup-box {
       background: var(--cream);
@@ -737,7 +747,7 @@
       <span class="btn-text">
         <span class="btn-label" style="margin-bottom: 0;">Faça seu agendamento aqui</span>
       </span>
-      <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span class="btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </button>
 
     <button id="btnAbrirGaleria" class="btn btn-espaco" aria-label="Conheça nosso espaço">
@@ -747,7 +757,7 @@
       <span class="btn-text">
         <span class="btn-label" style="margin-bottom: 0;">Veja aqui nosso estúdio</span>
       </span>
-      <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span class="btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </button>
 
     <a href="https://www.google.com/maps/search/Rua%20Mario%20Stella%2C%20341%2C%20Fartura%20-%20SP%2C%2018870-712%2C%20Brasil/@-23.3883,-49.5064,17z?hl=pt-BR" target="_blank" rel="noopener noreferrer" class="btn btn-maps" aria-label="Ver estúdio no Google Maps">
@@ -762,7 +772,7 @@
       <span class="btn-text">
         <span class="btn-label" style="margin-bottom: 0;">Conheça o estúdio no Maps</span>
       </span>
-      <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <span class="btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </a>
 
   </nav>
@@ -830,7 +840,7 @@
               <span class="agenda-btn-title">Aula Experimental</span>
               <span class="agenda-btn-desc">Conheça o método sem compromisso</span>
             </span>
-            <svg class="agenda-btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span class="agenda-btn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </button>
 
           <button type="button" class="agenda-btn" data-msg="Olá! Gostaria de agendar uma Aula Particular.">
@@ -841,7 +851,7 @@
               <span class="agenda-btn-title">Aula Particular</span>
               <span class="agenda-btn-desc">Atendimento individual e personalizado</span>
             </span>
-            <svg class="agenda-btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span class="agenda-btn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </button>
 
           <button type="button" class="agenda-btn" data-msg="Olá! Gostaria de saber mais sobre as Turmas.">
@@ -852,7 +862,7 @@
               <span class="agenda-btn-title">Turmas</span>
               <span class="agenda-btn-desc">Aulas em grupo, dias e horários</span>
             </span>
-            <svg class="agenda-btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span class="agenda-btn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
           </button>
         </div>
       </div>
