@@ -359,6 +359,28 @@
     }
     .btn-arrow svg { width: 16px; height: 16px; }
 
+    .btn-sublabel {
+      display: block;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(6px, calc((100vw - 180px) / 26), 9px);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn-disabled {
+      cursor: default;
+      opacity: 0.88;
+    }
+    .btn-disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
     .btn-whatsapp,
     .btn-espaco,
     .btn-maps {
@@ -750,15 +772,15 @@
       <span class="btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </button>
 
-    <button id="btnAbrirGaleria" class="btn btn-espaco" aria-label="Conheça nosso espaço">
+    <div class="btn btn-espaco btn-disabled" aria-label="Em breve - Inauguração em Dezembro">
       <span class="btn-icon">
         <img src="imagens/logo2.png" alt="" aria-hidden="true" />
       </span>
       <span class="btn-text">
-        <span class="btn-label" style="margin-bottom: 0;">Veja aqui nosso estúdio</span>
+        <span class="btn-label" style="margin-bottom: 2px;">Veja aqui nosso estúdio</span>
+        <span class="btn-sublabel">Em breve · Inauguração em Dezembro</span>
       </span>
-      <span class="btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-    </button>
+    </div>
 
     <a href="https://www.google.com/maps/search/Rua%20Mario%20Stella%2C%20341%2C%20Fartura%20-%20SP%2C%2018870-712%2C%20Brasil/@-23.3883,-49.5064,17z?hl=pt-BR" target="_blank" rel="noopener noreferrer" class="btn btn-maps" aria-label="Ver estúdio no Google Maps">
       <span class="btn-icon">
@@ -770,7 +792,7 @@
         </svg>
       </span>
       <span class="btn-text">
-        <span class="btn-label" style="margin-bottom: 0;">Conheça o estúdio no Maps</span>
+        <span class="btn-label" style="margin-bottom: 0;">Conheça nosso espaço no Maps</span>
       </span>
       <span class="btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </a>
@@ -926,7 +948,6 @@
     }, 300);
   }
 
-  document.getElementById('btnAbrirGaleria').addEventListener('click', openPopup);
   document.getElementById('popupClose').addEventListener('click', closePopup);
   document.getElementById('sliderPrev').addEventListener('click', function () { sliderMove(-1); });
   document.getElementById('sliderNext').addEventListener('click', function () { sliderMove(1);  });
